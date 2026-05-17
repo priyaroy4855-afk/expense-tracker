@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Priya Roy | Web Designer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; }
+
+    .hero {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
+    .hero p { font-size: 1.5rem; opacity: 0.9; }
+
+    section { padding: 80px 20px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: #333;
+    }
+
+    .about {
+      background: white;
+    }
+    .skills {
+      background: #f8f9fa;
+    }
+    .projects {
+      background: white;
+    }
+    .contact {
+      background: #1e2937;
+      color: white;
+    }
+
+    .skill-card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+    }
+
+    .project-card {
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+    }
+
+    .btn {
+      display: inline-block;
+      background: #667eea;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .btn:hover {
+      background: #5a67d8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Hi, I'm Priya Roy</h1>
+      <p>Web Designing Student</p>
+      <p>Siliguri, West Bengal</p>
+      <a href="#projects" class="btn">View My Projects</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <p style="max-width: 700px; margin: 0 auto; font-size: 1.2rem; text-align: center; color: #555;">
+        I am a passionate Web Designing student from Siliguri, West Bengal. 
+        I enjoy creating beautiful, clean and user-friendly websites. 
+        Currently learning modern web technologies like HTML, CSS, JavaScript and more.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="skills">
+    <div class="container">
+      <h2>Skills</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
+        <div class="skill-card">HTML5</div>
+        <div class="skill-card">CSS3</div>
+        <div class="skill-card">JavaScript</div>
+        <div class="skill-card">Tailwind CSS</div>
+        <div class="skill-card">Responsive Design</div>
+        <div class="skill-card">UI/UX Basics</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <h2>My Projects</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+
+        <div class="project-card">
+          <div style="height: 220px; background: #e0e7ff; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+            💰
+          </div>
+          <div style="padding: 25px;">
+            <h3>Expense Tracker</h3>
+            <p style="margin: 12px 0; color: #666;">A clean and functional expense tracker to manage income and expenses.</p>
+            <a href="https://your-expense-tracker-link.vercel.app" target="_blank" style="color: #667eea; font-weight: bold;">View Live Project →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact">
+    <div class="container" style="text-align: center;">
+      <h2 style="color: white;">Get In Touch</h2>
+      <p style="font-size: 1.2rem; margin: 20px 0;">Feel free to connect with me!</p>
+      <div style="font-size: 2.5rem; margin: 30px 0;">
+        <a href="#" style="color: white; margin: 0 15px;"><i class="fab fa-github"></i></a>
+        <a href="#" style="color: white; margin: 0 15px;"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:your.email@gmail.com" style="color: white; margin: 0 15px;"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
