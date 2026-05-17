@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Expense Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 15px;
+      margin: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1 { 
+      text-align: center; 
+      color: #333; 
+      margin-bottom: 10px;
+    }
+    
+    .balance {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      padding: 20px;
+      background: #e3f2fd;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 25px 0;
+    }
+    
+    input, select, button {
+      padding: 14px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    
+    button {
+      background: #4CAF50;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    button:hover {
+      background: #45a049;
+    }
+    
+    .list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .list li {
+      padding: 15px;
+      margin: 10px 0;
+      background: #f9f9f9;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .income { color: green; font-weight: bold; }
+    .expense { color: red; font-weight: bold; }
+    .delete { 
+      color: red; 
+      cursor: pointer; 
+      font-size: 20px; 
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💰 My Expense Tracker</h1>
+    
+    <div class="balance">
+      Total Balance: ₹ <span id="balance">0</span>
+    </div>
+
+    <form id="form">
+      <input type="text" id="desc" placeholder="Description (jaise: Chai, Salary)" required>
+      <input type="number" id="amount" placeholder="Amount (₹)" required>
+      
+      <select id="type">
+        <option value="income">Income (+)</option>
+        <option value="expense">Expense (-)</option>
+      </select>
+      
+      <button type="submit">Add Transaction</button>
+    </form>
+
+    <h3>All Transactions</h3>
+    <ul class="list" id="list"></ul>
+  </div>
+
+  <script>
+    // Wait for page to fully load
+    document.addEventListener("DOMContentLoaded", function() {
+      
+      let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+
+      function saveData() {
+        localStorage.setItem('transactions', JSON.stringify(transactions));
+      }
+
+      function updateBalance() {
+        let total = 0;
+        transactions.forEach(t => {
+          if (t.type === "income") total += Number(t.amount);
+          else total -= Number(t.amount);
+        });
+        document.getElementById("balance").textContent = total.toFixed(0);
+      }
+
+      function renderList() {
+        const list = document.getElementById("list");
+        list.innerHTML = "";
+        
+        transactions.forEach((t, index) => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <div>
+              <strong>${t.desc}</strong><br>
+              ₹${t.amount}
+            </div>
+            <div>
+              <span class="${t.type}">${t.type === "income" ? "+" : "-"}</span>
+              <span class="delete" onclick="deleteItem(${index})">❌</span>
+            </div>
+          `;
+          list.appendChild(li);
+        });
+      }
+
+      window.deleteItem = function(index) {
+        if (confirm("Delete this transaction?")) {
+          transactions.splice(index, 1);
+          saveData();
+          renderList();
+          updateBalance();
+        }
+      };
+
+      // Form Submit
+      document.getElementById("form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        const desc = document.getElementById("desc").value.trim();
+        const amount = document.getElementById("amount").value;
+        const type = document.getElementById("type").value;
+
+        if (desc === "" || amount === "") return;
+
+        transactions.push({ 
+          desc: desc, 
+          amount: Number(amount), 
+          type: type 
+        });
+        
+        saveData();
+        renderList();
+        updateBalance();
+
+        // Clear form
+        document.getElementById("desc").value = "";
+        document.getElementById("amount").value = "";
+      });
+
+      // Initial render
+      renderList();
+      updateBalance();
+    });
+  </script>
+</body>
+</html>
